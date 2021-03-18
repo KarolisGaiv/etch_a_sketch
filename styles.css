@@ -15,10 +15,3 @@ body {
     margin: 20px;
     max-width: max-content;
 }
-
-.grid-wrapper {
-    border: 3px solid black;
-    display: inline-grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
-}

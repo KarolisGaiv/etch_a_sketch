@@ -1,10 +1,10 @@
 // Global variables
 let numberOfSquares;
-
-// How many squares should be displayed
 let squaresInSide = 16;
+let squareSize = 560 / squaresInSide;
 
 // Selectors
+const bodyWrapper = document.querySelector(".body-wrapper");
 const gridWrapper = document.querySelector(".grid-wrapper");
 
 // Event listeners
@@ -13,20 +13,36 @@ reset.addEventListener("click", resetGrid);
 
 // Functions
 
-// Parameter indicates in which container square should be placed
-function createSquare(squareContainer) {
-  const square = document.createElement("div");
-  square.classList.add("square");
-  square.setAttribute(
-    "style",
-    "border: 1px solid black; height: 30px; width: 30px"
-  );
-  squareContainer.appendChild(square);
+function calcSquareSize(squaresPerLine) {
+  squareSize = 560 / squaresPerLine;
+  return squareSize;
 }
 
 function calcSquares(squares) {
   numberOfSquares = squares * squares;
+  calcSquareSize();
   return numberOfSquares;
+}
+
+function createContainer(squares) {
+  gridWrapper.style.border = "3px solid black";
+  gridWrapper.style.height = "560px";
+  gridWrapper.style.width = "560px";
+  gridWrapper.style.display = "inline-grid";
+  gridWrapper.style.gridTemplateColumns = `repeat(${squares}, 1fr)`;
+  gridWrapper.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
+  bodyWrapper.appendChild(gridWrapper);
+}
+
+// Parameter indicates in which container square should be placed
+function createSquare(container) {
+  const square = document.createElement("div");
+  square.classList.add("square");
+  square.style.border = "1px solid black";
+  square.style.width = `${squareSize}px`;
+  square.style.height = `${squareSize}px`;
+  square.style.boxSizing = "border-box";
+  container.appendChild(square);
 }
 
 // Color square on hover
@@ -59,8 +75,10 @@ function resetGrid() {
   gridWrapper.innerHTML = "";
   squaresInSide = newSize;
   calcSquares(squaresInSide);
+  createContainer(squaresInSide);
   populateContainer(numberOfSquares);
 }
 
 calcSquares(squaresInSide);
+createContainer(squaresInSide);
 populateContainer(numberOfSquares);
