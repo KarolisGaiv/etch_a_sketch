@@ -8,6 +8,7 @@ const squaresInHeight = 16;
 // Selectors
 const gridWrapper = document.querySelector(".grid-wrapper");
 
+
 // Functions
 
 // Parameter indicates in which container square should be placed
@@ -26,10 +27,23 @@ function calcSquares(width, height) {
   return numberOfSquares;
 }
 
+// Color square on hover
+function onHover() {
+  const squares = document.querySelectorAll(".square");
+
+  squares.forEach((square) => {
+    square.addEventListener("mouseover", (e) => {
+      let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+      e.target.style.background = randomColor;
+    });
+  });
+}
+
 function populateContainer(squareNumber) {
   for (let i = 0; i < squareNumber; i++) {
     createSquare(gridWrapper);
   }
+  onHover();
 }
 
 calcSquares(squaresInWidth, squaresInHeight);

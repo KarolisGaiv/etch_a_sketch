@@ -1,3 +1,8 @@
+body {
+    margin: auto;
+    max-width: max-content;
+}
+
 .grid-wrapper {
     border: 3px solid black;
     display: inline-grid;
