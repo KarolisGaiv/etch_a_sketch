@@ -11,7 +11,6 @@ const gridWrapper = document.querySelector(".grid-wrapper");
 const reset = document.querySelector(".reset-btn");
 reset.addEventListener("click", resetGrid);
 
-
 // Functions
 
 // Parameter indicates in which container square should be placed
@@ -50,12 +49,14 @@ function populateContainer(squareNumber) {
 }
 
 function resetGrid() {
-  gridWrapper.innerHTML = "";
   let newSize = prompt("How many squares per side new grid should have?");
   if (newSize > 100) {
     alert("More than 100 squares are not allowed");
     return;
+  } else if (newSize === null) {
+    return;
   }
+  gridWrapper.innerHTML = "";
   squaresInSide = newSize;
   calcSquares(squaresInSide);
   populateContainer(numberOfSquares);
