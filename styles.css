@@ -3,6 +3,19 @@ body {
     max-width: max-content;
 }
 
+.body-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px;
+}
+
+.reset-btn {
+    font-size: 20px;
+    margin: 20px;
+    max-width: max-content;
+}
+
 .grid-wrapper {
     border: 3px solid black;
     display: inline-grid;

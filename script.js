@@ -2,11 +2,14 @@
 let numberOfSquares;
 
 // How many squares should be displayed
-const squaresInWidth = 16;
-const squaresInHeight = 16;
+let squaresInSide = 16;
 
 // Selectors
 const gridWrapper = document.querySelector(".grid-wrapper");
+
+// Event listeners
+const reset = document.querySelector(".reset-btn");
+reset.addEventListener("click", resetGrid);
 
 
 // Functions
@@ -22,8 +25,8 @@ function createSquare(squareContainer) {
   squareContainer.appendChild(square);
 }
 
-function calcSquares(width, height) {
-  numberOfSquares = width * height;
+function calcSquares(squares) {
+  numberOfSquares = squares * squares;
   return numberOfSquares;
 }
 
@@ -46,5 +49,17 @@ function populateContainer(squareNumber) {
   onHover();
 }
 
-calcSquares(squaresInWidth, squaresInHeight);
+function resetGrid() {
+  gridWrapper.innerHTML = "";
+  let newSize = prompt("How many squares per side new grid should have?");
+  if (newSize > 100) {
+    alert("More than 100 squares are not allowed");
+    return;
+  }
+  squaresInSide = newSize;
+  calcSquares(squaresInSide);
+  populateContainer(numberOfSquares);
+}
+
+calcSquares(squaresInSide);
 populateContainer(numberOfSquares);
